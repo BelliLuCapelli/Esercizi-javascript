@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signore degli anelli</title>
+    <body>
+      <div class="card">
+        <img class="img" src="" width="300" alt="book image" />
+        <h1 class="title"></h1>
+      </div>
+    </body>
+    <script>
+      async function fetchData() {
+        try {
+          const response = await fetch(
+            "https://ringsdb.com/api/public/card/01001.json"
+          );
+          const responseJson = await response.json();
+
+          const nameCard = document.querySelector(".title");
+          const img = document.querySelector(".img");
+
+          nameCard.textContent = responseJson.name;
+          img.src = "https://ringsdb.com" + responseJson.imagesrc;
+        } catch (error) {
+          console.error("qualcosa è andato storto", error);
+        }
+      }
+
+      fetchData();
+    </script>
+  </head>
+</html>
